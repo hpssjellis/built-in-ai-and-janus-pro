@@ -118,7 +118,7 @@
                     myStatus.textContent = `Analyzing... ${myAnalysisSeconds} seconds`;
                 }, 1000);
                 // Log the prompt being sent to the model
-                console.log('Sending prompt to the model: "Describe this image as completely as you can"');
+                console.log('Sending prompt to the model: "Describe this image as completely as you can in a prompt form so that an image generator can reproduce the image"');
                 const myStream = mySession.promptStreaming([
                     {
                         role: 'user',
