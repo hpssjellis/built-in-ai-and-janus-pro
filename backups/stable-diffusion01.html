@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Stable Diffusion in Browser (ONNX + WebGPU)</title>
+    <script type="module">
+      import { pipeline } from "https://cdn.jsdelivr.net/npm/@xenova/transformers@2.6.0";
+
+      let myGenerator = null;
+
+      async function myInit(modelName) {
+        document.getElementById("myStatus").innerText = "Loading model: " + modelName;
+        myGenerator = await pipeline(
+          "text-to-image",
+          modelName,
+          { device: "webgpu" }
+        );
+        document.getElementById("myStatus").innerText = "Ready with " + modelName;
+      }
+
+      async function myGenerateImage() {
+        if (!myGenerator) {
+          alert("Please wait, model not ready yet.");
+          return;
+        }
+        let myPrompt = document.getElementById("myPrompt").value;
+        document.getElementById("myStatus").innerText = "Generating...";
+        let result = await myGenerator(myPrompt);
+        document.getElementById("myOutput").src = result[0];
+        document.getElementById("myStatus").innerText = "Done!";
+      }
+
+      async function myChangeModel() {
+        let modelName = document.getElementById("myModelSelect").value;
+        await myInit(modelName);
+      }
+
+      // load default model on page load
+      myInit("onnx-community/StableDiffusion-ONNX");
+    </script>
+  </head>
+  <body>
+    <h2>Stable Diffusion in Chrome (ONNX + WebGPU)</h2>
+
+    <label>Choose Model:</label>
+    <select id="myModelSelect" onchange="myChangeModel()">
+      <option value="onnx-community/StableDiffusion-ONNX">SD v1.4 ONNX</option>
+      <option value="onnx-community/stable-diffusion-v1-5">SD v1.5 ONNX</option>
+      <option value="onnx-community/stable-diffusion-2-1">SD 2.1 ONNX</option>
+      <option value="onnx-community/sdxl">SDXL Base (experimental)</option>
+    </select>
+    <br><br>
+
+    <input id="myPrompt" value="A futuristic city with flying cars" size="60">
+    <input type="button" value="Generate" onclick="myGenerateImage()">
+
+    <p id="myStatus">Loading...</p>
+    <img id="myOutput" width="512">
+  </body>
+</html>
