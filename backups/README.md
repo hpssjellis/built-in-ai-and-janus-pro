@@ -19,3 +19,12 @@ Backups
 1. [index06.html](https://hpssjellis.github.io/built-in-ai-and-janus-pro/backups/index06.html) 
 1. [index07.html](https://hpssjellis.github.io/built-in-ai-and-janus-pro/backups/index07.html) 
 1. [index08.html](https://hpssjellis.github.io/built-in-ai-and-janus-pro/backups/index08.html) 
+
+
+
+stableDiffusion
+
+
+1. [index08.html](https://hpssjellis.github.io/built-in-ai-and-janus-pro/backups/stable-diffusion01.html) 
+1. [index08.html](https://hpssjellis.github.io/built-in-ai-and-janus-pro/backups/stable-diffusion02.html) 
+1. [index08.html](https://hpssjellis.github.io/built-in-ai-and-janus-pro/backups/stable-diffusion03.html) 
